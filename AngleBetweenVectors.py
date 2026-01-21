@@ -4,30 +4,22 @@ import math
 def acceptInput():
     dynamicVarsVectors = {}
 
-    try: 
-        #vector input MUST NOT include spaces between integers, for exmaple [2,1] != [2, 1]
+    try:
         Rn = int(input("R^n, n="))
         Vec1 = input("Input vector 1\n[x,y,z]=")
         Vec2 = input("Input vector 2\n[x,y,z]=")
 
-        #strips user input of the brackets containing vector coordinates
-        Vec1 = Vec1.strip("[")
-        Vec1 = Vec1.strip("]")
-
-        Vec2 = Vec2.strip("[")
-        Vec2 = Vec2.strip("]")
-
-        #splits user inputs after stripping, returns a list containing user input values
-        splitVec1 = Vec1.split(",")
-        splitVec2 = Vec2.split(",")
+        #strips user input of the brackets containing vector coordinates and splits at ',
+        Vec1 = Vec1.strip("[] ").split(",")
+        Vec2 = Vec2.strip("[] ").split(",")
 
         #assigns place in dictionary for the first input vector, of the name type {xn : value} where n is the index of the value in the vector
         for dimension in range(Rn):
-            dynamicVarsVectors['x' + str(dimension)] = int(splitVec1[dimension])
+            dynamicVarsVectors['x' + str(dimension)] = int(Vec1[dimension])
 
         #mirrors above loop but for the second input vector
         for dimension in range(Rn):
-            dynamicVarsVectors['y' + str(dimension)] = int(splitVec2[dimension])
+            dynamicVarsVectors['y' + str(dimension)] = int(Vec2[dimension])
 
         return dynamicVarsVectors, Rn
    
